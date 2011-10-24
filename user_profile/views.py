@@ -2,9 +2,12 @@ from djangorestframework.views import View
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
+from publication.models import Publication
+
 class GeneralFeedView(View):
     def get(self, request):
-        pass
+        publications = Publication.objects.filter(is_public=True)
+        return publications
     
     
 class UserFeedView(View):
