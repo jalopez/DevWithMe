@@ -4,22 +4,26 @@
 <html>
 	<head>
 		 <title>{% block title %}DevWithMe{% endblock %}</title>
+		 <link href="/static/style.css" rel="stylesheet" type="text/css" />
+		 
 	</head>
 	<body>
-		<div class="header">
-			{% block header %}
-			{% if user.is_authenticated %}
-			    <p>Welcome, {{ user.username }}. <a href="/logout">Logout</a>.</p>
-			{% else %}
-			    <p>Welcome, anonymous. Please <a href="{% url 'django.contrib.auth.views.login' %}?next=/">log in.</a></p>
-			{% endif %}
-			{% endblock %}
-		</div>
-		<div class="main">
-			{% block main_content %}{% endblock %}
-		</div>
-		<div class="footer">
-			
+		<div class="wrapper">
+			<div class="header">
+				{% block header %}
+					{% if user.is_authenticated %}
+					    <p>Welcome, {{ user.username }}. <a href="/logout">Logout</a>.</p>
+					{% else %}
+					    <p>Welcome, anonymous. Please <a href="{% url 'django.contrib.auth.views.login' %}?next=/">log in.</a></p>
+					{% endif %}
+				{% endblock %}
+			</div>
+			<div class="main">
+				{% block main_content %}{% endblock %}
+			</div>
+			<div class="footer">
+				
+			</div>
 		</div>
 	</body>
 </html>

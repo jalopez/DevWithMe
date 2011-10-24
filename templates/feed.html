@@ -2,16 +2,14 @@
 {% load humanize %}
 
 {% block main_content %}
-<h1>HOLA</h1>
-
 {% for pub in feed%}
 	<div class="publication">
-		<div class="headr_pub">
-			<div class="title"><a href="#">{{ pub.content.title }}</a></div>
+		<div class="header_pub">
+			<div class="title"><a href="/publication/{{ pub.pk }}">{{ pub.content.title }}</a></div>
 			<div class="date">{{ pub.date|naturalday }}</div>
 		</div>		
-		<div class="content">{{ pub.content.text }}</div>
-		<div class="tags"></div>	
+		<div class="pub_content">{{ pub.content.text }}</div>
+		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in pub.content.tags.all %}{{ tag }} {% endfor %}</div>	
 	</div>
 {% endfor %}
 
