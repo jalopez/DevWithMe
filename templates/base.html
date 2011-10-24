@@ -10,11 +10,12 @@
 	<body>
 		<div class="wrapper">
 			<div class="header">
+				<h1>DevWithMe</h1>
 				{% block header %}
 					{% if user.is_authenticated %}
-					    <p>Welcome, {{ user.username }}. <a href="/logout">Logout</a>.</p>
+					    <p class="username">Welcome, {{ user.username }}. <a href="/logout">Logout</a>.</p>
 					{% else %}
-					    <p>Welcome, anonymous. Please <a href="{% url 'django.contrib.auth.views.login' %}?next=/">log in.</a></p>
+					    <p class="username">Welcome, anonymous. Please <a href="{% url 'django.contrib.auth.views.login' %}?next=/">log in.</a></p>
 					{% endif %}
 				{% endblock %}
 			</div>

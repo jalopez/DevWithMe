@@ -1,7 +1,27 @@
+.header{
+	height: 50px;
+	position: relative;
+}
+
+.header h1{
+	color: red;
+}
 
 .wrapper{	
-	width: 800px;
+	width: 900px;
 	margin: 10px auto;
+}
+
+.username{
+	position: absolute;
+	right: 5px;
+	top: 0px;
+	margin: 0;
+}
+
+.main{
+	margin: 0 auto;
+    width: 850px;
 }
 
 .publication{
@@ -31,12 +51,7 @@
 .publication .header_pub .title a{
 	color: #000000;
     font-size: 15pt;
-    text-decoration: none;
     cursor: pointer;
-}
-
-.publication .header_pub .title a:hover{
-	text-decoration: underline;	
 }
 
 .publication .pub_content{
