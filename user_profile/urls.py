@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import patterns, url
-from views import GeneralFeedView, UserFeedView
 
-urlpatterns = patterns('views',
+urlpatterns = patterns('user_profile.views',
     url(r'^$', 'general_feed'),
     url(r'^(?P<username>\w+)$', 'user_feed')
 )
