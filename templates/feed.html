@@ -9,6 +9,15 @@
 		Public feed
 	{% endif %}
 </h2>
+{% if user.is_authenticated %}
+	<a class="add add_snippet" href="#">Add new snippet</a>
+{% endif %}
+<div class="hidden pub_form" id="new_snippet_area">
+    <form action="/publication?next={% if user_feed %}{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
+            {{ pub_form.as_p }}
+            <input type="submit" value="Add Snippet" />
+    </form>
+</div>
 {% for pub in feed%}
 	<div class="publication">
 		<div class="header_pub">
@@ -16,10 +25,13 @@
 			<div class="date">{{ pub.date|naturalday }}</div>
 		</div>		
 		<div class="pub_content">{{ pub.content.text }}</div>
+		<a href="/publication/{{ pub.pk }}#comments">Add/Show comments</a>
 		{% if pub.content.tags.all|length > 0 %}
 		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in pub.content.tags.all %}{{ tag }} {% endfor %}</div>
 		{% endif %}	
 	</div>
 {% endfor %}
+
+
 
 {% endblock %}

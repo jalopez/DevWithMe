@@ -1,3 +1,11 @@
+a{
+	color: black;
+}
+
+.hidden{
+	display: none;
+}
+
 .header{
 	height: 50px;
 	position: relative;
@@ -24,6 +32,10 @@
     width: 850px;
 }
 
+.pub_form{
+	padding: 5px 20px;
+	border: 1px solid #000000;
+}
 .publication{
 	background: none repeat scroll 0 0 #DDDDDD;
     clear: both;
