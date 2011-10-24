@@ -16,17 +16,19 @@ class Publication(models.Model):
 class Content(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
     tags = models.ManyToManyField(Tag, null=True, blank=True)
+    text = models.TextField()
 #    class Meta:
 #        abstract = True
+    def __unicode__(self):
+        return self.title
 
 class Comment(Content):
-    text = models.TextField()
+    pass
 
 class Snippet(Content):
-    code = models.TextField()
+    pass
 
 class URL(Content):
     url = models.URLField()
-    text = models.TextField()
 
     
