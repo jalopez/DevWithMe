@@ -1,3 +1,4 @@
 *.pyc
 sqlite.db
 */migrations
+local_settings.py
