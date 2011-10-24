@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block main_content %}
+
+	<h2>
+		{{ pub.content.title }}
+	</h2>
+
+	<div class="publication">
+		<div class="header_pub">
+			<div class="date">{{ pub.date|naturalday }}</div>
+		</div>		
+		<div class="pub_content">{{ pub.content.text }}</div>
+		{% if pub.content.tags.all|length > 0 %}
+		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in pub.content.tags.all %}{{ tag }} {% endfor %}</div>
+		{% endif %}	
+	</div>
+	<div class="replies">
+		{% for reply in replies %}
+			<div class="publication">
+				<div class="header_pub">
+					<div class="title">{{ reply.content.title }}</div>
+					<div class="date">{{ reply.date|naturalday }}</div>
+				</div>		
+				<div class="pub_content">{{ reply.content.text }}</div>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="addcomment">
+			<a name="comment" class="add">Add comment...</a>
+             <div class="hidden pub_form" id="new_snippet_area">
+			    <form action="/publication?next={% if user_feed %}{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
+			            {{ pub_form.as_p }}
+			            <input type="submit" value="Add Snippet" />
+			    </form>
+			</div>
+    </div>
+
+{% endblock %}

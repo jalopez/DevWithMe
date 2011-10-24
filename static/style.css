@@ -45,6 +45,16 @@ a{
     padding: 10px;
     width: 100%;
 }
+.addcomment {
+	clear: both;
+	margin-left: 60px;
+}
+.replies .publication {
+	margin-left: 60px;
+	margin-bottom: 5px;
+	width: 60%;
+	min-height: 50px;
+}
 
 .publication .header_pub{
 	float:left;
@@ -77,5 +87,10 @@ a{
 	width: 100%;
 	bottom: 0;
 	font-size: 10pt;
+}
+
+.add {
+	cursor: pointer;
+	text-decoration: underline;
 }
 

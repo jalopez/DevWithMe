@@ -15,7 +15,7 @@
 				<h1>DevWithMe</h1>
 				{% block header %}
 					{% if user.is_authenticated %}
-					    <p class="username">Welcome, <a href="/{{ user.username }}">{{ user.username }}<</a>. <a href="/logout">Logout</a>.</p>
+					    <p class="username">Welcome, <a href="/{{ user.username }}">{{ user.username }}</a>. <a href="/logout">Logout</a>.</p>
 					{% else %}
 					    <p class="username">Welcome, anonymous. Please <a href="{% url 'django.contrib.auth.views.login' %}?next=/">log in.</a></p>
 					{% endif %}

@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from annoying.decorators import render_to
 from django.http import HttpResponseForbidden
 
-from publication.forms import PublicationForm
+from publication.forms import SnippetForm
 from publication.models import Publication
 
 @render_to('feed.html')
@@ -22,7 +22,7 @@ def user_feed(request, username):
         if logged_user == requested_user or requested_user in relationships:
             return {'feed': requested_user.get_feed(), 
                     'user_feed': username,
-                    'pub_form': PublicationForm()                 
+                    'pub_form': SnippetForm()                 
                     }
         else:
             return HttpResponseForbidden("You are not allowed to access this feed")
