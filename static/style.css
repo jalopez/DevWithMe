@@ -1,0 +1,54 @@
+
+.wrapper{	
+	width: 800px;
+	margin: 10px auto;
+}
+
+.publication{
+	background: none repeat scroll 0 0 #DDDDDD;
+    clear: both;
+    float: left;
+    margin: 10px;
+    min-height: 100px;
+    padding: 10px;
+    width: 100%;
+}
+
+.publication .header_pub{
+	float:left;
+	width: 100%;
+}
+
+.publication .header_pub > div{
+	float:left;
+}
+
+.publication .header_pub .date{
+	float: right;
+	margin-right: 20px;
+}
+
+.publication .header_pub .title a{
+	color: #000000;
+    font-size: 15pt;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.publication .header_pub .title a:hover{
+	text-decoration: underline;	
+}
+
+.publication .pub_content{
+	float: left;
+	width: 100%;
+	margin-top: 5px;
+}
+
+.publication .pub_tags{
+	float: left;
+	width: 100%;
+	bottom: 0;
+	font-size: 10pt;
+}
+
