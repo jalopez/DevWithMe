@@ -14,8 +14,8 @@ class UserProfile(models.Model):
         relationships = self.relationships.all()   
         publications = Publication.objects.filter(
             Q(to=self) | (Q(is_public=False)& Q(published_by__in=relationships)) |
-            Q(published_by=self).filter(reply_to_pub=None)
-        ).order_by('-date')
+            Q(published_by=self)
+        ).filter(reply_to_pub=None).order_by('-date')
         return publications
 
     def __unicode__(self):
