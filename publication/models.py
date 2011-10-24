@@ -14,7 +14,7 @@ class Publication(models.Model):
         return "%s on %s" % (self.published_by, self.date)
 
 class Content(models.Model):
-    title = models.CharField(max_length=255, null=True, blank=True)
+    title = models.CharField(max_length=255)
     tags = models.ManyToManyField(Tag, null=True, blank=True)
     text = models.TextField()
 #    class Meta:
