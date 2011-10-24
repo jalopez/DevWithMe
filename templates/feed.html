@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block main_content %}
+<h1>HOLA</h1>
+
+{% for pub in feed%}
+	<div class="publication">
+		<div class="headr_pub">
+			<div class="title"><a href="#">{{ pub.content.title }}</a></div>
+			<div class="date">{{ pub.date|naturalday }}</div>
+		</div>		
+		<div class="content">{{ pub.content.text }}</div>
+		<div class="tags"></div>	
+	</div>
+{% endfor %}
+
+{% endblock %}
