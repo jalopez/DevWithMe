@@ -7,7 +7,7 @@ from publication.models import Publication
 @render_to('feed.html')
 def general_feed(request):
     publications = Publication.objects.filter(is_public=True).filter(reply_to_pub=None)
-    return publications
+    return {'feed': publications}
     
 @render_to('feed.html')  
 def user_feed(request, username):
