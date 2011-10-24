@@ -108,6 +108,8 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+AUTH_PROFILE_MODULE = 'user_profile.UserProfile'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,16 +118,16 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'django.contrib.admindocs',
     # libraries
     'south',
     'django_extensions',
     'annoying',
     'djangorestframework',
     # applications
+    'user_profile',
     'publication',
     'tag',
-    'user_profile'
+   
 )
 
 # A sample logging configuration. The only tangible logging
