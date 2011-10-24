@@ -122,7 +122,6 @@ INSTALLED_APPS = (
     'south',
     'django_extensions',
     'annoying',
-    'djangorestframework',
     # applications
     'user_profile',
     'publication',
