@@ -23,24 +23,44 @@
 					{% endif %}
 				{% endblock %}
 			</div>
-			<div class="menu">
-				<ul>
-					<li><a href="/">Public Feed</a></li>
-					{% if user.is_authenticated %}
-						<li><a href="/{{user.username}}">My Feed</a></li>
-						<li><a class="add addSnippet">Add new snippet</a></li>
-					{% endif %}
-				</ul>
-			</div>
+			<div class="menu-left">
+				<div class="menu">
+					<ul>
+						<li><a href="/">Public Feed</a></li>
+						{% if user.is_authenticated %}
+							<li><a href="/{{user.username}}">My Feed</a></li>
+							<li><a class="add addSnippet">Add new snippet</a></li>
+						{% endif %}
+					</ul>
+				</div>
+				{% if user.is_authenticated %}
+					<div class="menu">
+						<div>Following...</div>
+						<ul>
+							{% for user in relationships %}
+								<li><a href="/{{ user }}">{{ user }}</a></li>
+							{% endfor %}
+						</ul>
+						<a class="addRelationship">Follow new user</a>
+					</div>
+				{% endif %}
+				</div>
+			
 			{% if msg %}
 				<div class="msg">{{ msg }}</div>
 			{% endif %}
 			<div class="main">
 				{% if user.is_authenticated %}
 					<div class="hidden snippet_form" id="new_snippet_area">
-					    <form action="/publication?next={% if user_feed %}{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
+					    <form action="/publication?next={% if user_feed %}/{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
 					            {{ pub_form.as_p }}
 					            <input type="submit" value="Add Snippet" />
+					    </form>
+					</div>			
+					<div class="hidden relationship_form" id="relationshipform_area">
+					    <form action="/user?next={% if user_feed %}/{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
+					            {{ relationship_form.as_p }}
+					            <input type="submit" value="Follow" />
 					    </form>
 					</div>
 				{% endif %}

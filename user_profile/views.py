@@ -1,9 +1,12 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from annoying.decorators import render_to
 from django.http import HttpResponseForbidden
 
+
+from forms import RelationshipForm
+from models import Relationship
 from publication.models import Publication
 
 @render_to('feed.html')
@@ -26,3 +29,34 @@ def user_feed(request, username):
                     }
         else:
             return HttpResponseForbidden("You are not allowed to access this feed")
+        
+@login_required
+def add_relationship(request):
+    if request.method != 'POST':
+        return HttpResponseForbidden("Method not allowed")
+    next = "/"
+    if (request.GET.has_key("next")):
+        next = request.GET["next"]
+        
+    form = RelationshipForm(request.POST)
+        
+    if not form.is_valid():
+        #add error
+        return redirect(next)
+    
+    username = form.cleaned_data['user']
+    
+    followed = get_object_or_404(User, username=username).get_profile()
+    
+    user = request.user.get_profile()
+    
+    if user != followed:
+        m1 = Relationship(origin=user, destination=followed, relationship_type=1)
+        m1.save()
+    else:
+        pass
+        #add error
+    return redirect(next)
+    
+    
+        
