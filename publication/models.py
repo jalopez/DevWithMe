@@ -1,7 +1,5 @@
 from django.db import models
 
-from tag.models import Tag
-
 from pygments import highlight
 from pygments.lexers import guess_lexer
 from pygments.formatters.html import HtmlFormatter
@@ -19,7 +17,7 @@ class Publication(models.Model):
 
 class Content(models.Model):
     title = models.CharField(max_length=255)
-    tags = models.ManyToManyField(Tag, null=True, blank=True)
+    tags = models.ManyToManyField("tag.Tag", null=True, blank=True)
     text = models.TextField()
 #    class Meta:
 #        abstract = True

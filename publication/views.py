@@ -76,7 +76,7 @@ def add_tags(content, tags_string):
         [get_or_create_tag(content, t) for t in tags_string.split(",")]
     
 def get_or_create_tag(content, t):
-    tag, created = Tag.objects.get_or_create(tag=t)
+    tag, created = Tag.objects.get_or_create(tag=t.strip())
     if (created):
         tag.save()
         

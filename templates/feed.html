@@ -38,7 +38,7 @@
 			<a href="/publication/{{ pub.pk }}#comments">Add Comments</a>
 		{% endif %}
 		{% if pub.content.tags.all|length > 0 %}
-		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in p.pub.content.tags.all %}{{ tag }} {% endfor %}</div>
+		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in p.pub.content.tags.all %} <a href="/tag/{{ tag }}">{{ tag }}</a> {% endfor %}</div>
 		{% endif %}	
 		</div>
 	</div>
