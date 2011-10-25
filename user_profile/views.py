@@ -9,7 +9,9 @@ from publication.models import Publication
 @render_to('feed.html')
 def general_feed(request):
     publications = Publication.objects.filter(is_public=True).filter(reply_to_pub=None).order_by("-date")
-    return {'feed': publications}
+    feed = [{'pub': pub, 'replies': Publication.objects.filter(reply_to_pub=pub).count()} 
+            for pub in publications]
+    return {'feed': feed}
     
 
 @login_required

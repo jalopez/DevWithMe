@@ -11,30 +11,36 @@
 		Public Feed
 	{% endif %}{% endif %}
 </h2>
-{% for pub in feed%}
+{% for p in feed%}
 	<div class="publication">
 		<div class="header_pub">
-			<div class="title"><a href="/publication/{{ pub.pk }}">{{ pub.content.title }}</a> by 
-				<a class="small" href="/{{ pub.published_by}}">{{ pub.published_by}}</a></div>
+			<div class="title"><a href="/publication/{{ p.pub.pk }}">{{ p.pub.content.title }}</a> by 
+				<a class="small" href="/{{ p.pub.published_by}}">{{ p.pub.published_by}}</a></div>
 			<div class="date">
-				<div>{{ pub.date|naturalday }}</div>
-				<div>{{ pub.date|date:"H:m" }}</div>
+				<div>{{ p.pub.date|naturalday }}</div>
+				<div>{{ p.pub.date|date:"H:m" }}</div>
 			</div>
 		</div>		
-		{% if pub.content.snippet %}
+		{% if p.pub.content.snippet %}
 			<div class="pub_content snippet">
-				{{ pub.content.snippet.pretty_print|safe }}
+				{{ p.pub.content.snippet.pretty_print|safe }}
 			</div>
 		{% else %}
 			<div class="pub_content">
-				{{ pub.content.text }}
+				{{ p.pub.content.text }}
 			</div>
 		{% endif %}
 
-		<a href="/publication/{{ pub.pk }}#comments">Add/Show comments</a>
+		<div>
+		{% if p.replies %}
+			{{ p.replies }} Replies. <a href="/publication/{{ pub.pk }}#comments">Show them</a>
+		{% else %}
+			<a href="/publication/{{ pub.pk }}#comments">Add Comments</a>
+		{% endif %}
 		{% if pub.content.tags.all|length > 0 %}
-		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in pub.content.tags.all %}{{ tag }} {% endfor %}</div>
+		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in p.pub.content.tags.all %}{{ tag }} {% endfor %}</div>
 		{% endif %}	
+		</div>
 	</div>
 {% endfor %}
 

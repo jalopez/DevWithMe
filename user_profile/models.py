@@ -16,7 +16,9 @@ class UserProfile(models.Model):
             Q(to=self) | (Q(is_public=False)& Q(published_by__in=relationships)) |
             Q(published_by=self)
         ).filter(reply_to_pub=None).order_by('-date')
-        return publications
+        feed = [{'pub': pub, 'replies': Publication.objects.filter(reply_to_pub=pub).count()} 
+        for pub in publications]
+        return feed
 
     def __unicode__(self):
         return self.user.username
