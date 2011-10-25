@@ -12,7 +12,7 @@
 	{% endif %}{% endif %}
 </h2>
 {% for p in feed%}
-	<div class="publication">
+	<div class="publication {% if user.username ==  user_feed and last_access < p.pub.date %}{{ "new" }}{% endif %}">
 		<div class="header_pub">
 			<div class="title"><a href="/publication/{{ p.pub.pk }}">{{ p.pub.content.title }}</a> by 
 				<a class="small" href="/{{ p.pub.published_by}}">{{ p.pub.published_by}}</a></div>

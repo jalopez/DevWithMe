@@ -8,6 +8,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, unique=True)
     relationships = models.ManyToManyField('self', through='Relationship', symmetrical=False, 
                                            null=True, blank=True)
+    last_access_my_feed = models.DateTimeField(null=True, blank=True)
     
     def get_feed(self):
         

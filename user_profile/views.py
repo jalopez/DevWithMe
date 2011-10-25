@@ -9,6 +9,8 @@ from forms import RelationshipForm
 from models import Relationship
 from publication.models import Publication
 
+from datetime import datetime
+
 @render_to('feed.html')
 def general_feed(request):
     publications = Publication.objects.filter(is_public=True).filter(reply_to_pub=None).order_by("-date")
@@ -23,9 +25,14 @@ def user_feed(request, username):
         requested_user = get_object_or_404(User, username=username).get_profile()
         logged_user =  request.user.get_profile()
         relationships = logged_user.relationships.all()
+        if requested_user == logged_user:
+            last_access = logged_user.last_access_my_feed
+        logged_user.last_access_my_feed = datetime.now()
+        logged_user.save()
         if logged_user == requested_user or requested_user in relationships:
             return {'feed': requested_user.get_feed(), 
-                    'user_feed': username                 
+                    'user_feed': username,
+                    'last_access': last_access
                     }
         else:
             return HttpResponseForbidden("You are not allowed to access this feed")
