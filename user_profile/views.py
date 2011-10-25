@@ -27,6 +27,8 @@ def user_feed(request, username):
         relationships = logged_user.relationships.all()
         if requested_user == logged_user:
             last_access = logged_user.last_access_my_feed
+        else:
+            last_access = None
         logged_user.last_access_my_feed = datetime.now()
         logged_user.save()
         if logged_user == requested_user or requested_user in relationships:
