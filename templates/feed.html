@@ -7,9 +7,11 @@
 		My Feed
 	{% else %}{% if user_feed %}
 		{{ user_feed }}'s Feed
+	{% else %}{% if tag_feed %}
+		{{ tag_feed }} Feed
 	{% else %}
 		Public Feed
-	{% endif %}{% endif %}
+	{% endif %}{% endif %}{% endif %}
 </h2>
 {% for p in feed%}
 	<div class="publication {% if user.username ==  user_feed and last_access < p.pub.date %}{{ "new" }}{% endif %}">
