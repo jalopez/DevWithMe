@@ -21,7 +21,16 @@
 				<div>{{ pub.date|date:"H:m" }}</div>
 			</div>
 		</div>		
-		<div class="pub_content">{{ pub.content.text }}</div>
+		{% if pub.content.snippet %}
+			<div class="pub_content snippet">
+				{{ pub.content.snippet.pretty_print|safe }}
+			</div>
+		{% else %}
+			<div class="pub_content">
+				{{ pub.content.text }}
+			</div>
+		{% endif %}
+
 		<a href="/publication/{{ pub.pk }}#comments">Add/Show comments</a>
 		{% if pub.content.tags.all|length > 0 %}
 		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in pub.content.tags.all %}{{ tag }} {% endfor %}</div>

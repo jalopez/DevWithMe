@@ -2,6 +2,10 @@ from django.db import models
 
 from tag.models import Tag
 
+from pygments import highlight
+from pygments.lexers import guess_lexer
+from pygments.formatters.html import HtmlFormatter
+
 class Publication(models.Model):
     is_public = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
@@ -19,6 +23,10 @@ class Content(models.Model):
     text = models.TextField()
 #    class Meta:
 #        abstract = True
+
+    def pretty_print(self):
+        return self.text
+        
     def __unicode__(self):
         return self.title
 
@@ -26,7 +34,11 @@ class Comment(Content):
     pass
 
 class Snippet(Content):
-    pass
+    def pretty_print(self):
+        lexer = guess_lexer(self.text)
+        formatter = HtmlFormatter(linenos=True, cssclass="default")
+        result = highlight(self.text, lexer, formatter)
+        return result
 
 class URL(Content):
     url = models.URLField()

@@ -110,6 +110,9 @@ a{
 	width: 100%;
 	margin-top: 5px;
 }
+.pub_content.snippet {
+	background-color: #DDDDDD;
+}
 
 .publication .pub_tags{
 	float: left;
