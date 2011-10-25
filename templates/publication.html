@@ -4,8 +4,12 @@
 {% block main_content %}
 
 	<h2>
-		{{ pub.content.title }}
+		{{ pub.content.title }} 
+		<div class="inline_small">by 
+			<a class="small" href="/{{ pub.published_by }}">{{ pub.published_by}}</a>
+		</div> 
 	</h2>
+	
 
 	<div class="publication">
 		<div class="header_pub">
@@ -19,22 +23,25 @@
 		{% for reply in replies %}
 			<div class="publication">
 				<div class="header_pub">
-					<div class="title">{{ reply.content.title }}</div>
-					<div class="date">{{ reply.date|naturalday }}</div>
+					<div class="title comment_title">{{ reply.content.title }}</div>by 
+					<a class="small" href="/{{ reply.published_by }}">{{ pub.published_by}}</a>
+					<div class="date comment_date">{{ reply.date|naturalday }}</div>
 				</div>		
 				<div class="pub_content">{{ reply.content.text }}</div>
 			</div>
 		{% endfor %}
-	</div>	
-	</div>
-	<div class="addcomment">
+		</div>
+		<div class="addcomment">
 			<a name="comment" class="addReply">Add comment...</a>
              <div class="hidden reply_form" id="new_snippet_area">
-			    <form action="/publication?next={% if user_feed %}/{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
-			            {{ pub_form.as_p }}
+			    <form action="/publication?next={% if user_feed %}/publication/{{ pub.pk }}{% else %}/{% endif %}" method="post">{% csrf_token %}
+			    		<input type="hidden" name="reply_to" value="{{ pub.pk }}" />
+			            {{ comment_form.as_p }}
 			            <input type="submit" value="Add Snippet" />
 			    </form>
 			</div>
-    </div>
+    	</div>
+   	</div>	
+
 
 {% endblock %}

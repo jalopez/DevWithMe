@@ -72,7 +72,7 @@ a{
 }
 .addcomment {
 	clear: both;
-	margin-left: 60px;
+	margin-left: 15px;
 }
 .replies .publication {
 	margin-bottom: 5px;
@@ -116,6 +116,16 @@ a{
 	width: 100%;
 	bottom: 0;
 	font-size: 10pt;
+}
+
+.publication .comment_title{
+	font-weight: bold;
+}
+
+.inline_small{
+	font-weight: normal;
+	font-size: 12pt;
+	display: inline
 }
 
 .small {
