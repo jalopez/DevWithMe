@@ -21,6 +21,25 @@
 					{% endif %}
 				{% endblock %}
 			</div>
+			<div class="menu">
+				<div class="title">Menu</div>
+				<ul>
+					<li><a href="/">Public Feed</a></li>
+					{% if user.is_authenticated %}
+						<li><a href="/{{user.username}}">My Feed</a></li>
+						<li><a class="add add_snippet">Add new snippet</a></li>
+					{% endif %}
+				</ul>
+				<div class="hidden pub_form" id="new_snippet_area">
+				    <form action="/publication?next={% if user_feed %}{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
+				            {{ pub_form.as_p }}
+				            <input type="submit" value="Add Snippet" />
+				    </form>
+				</div>
+			</div>
+			{% if msg %}
+				<div class="msg">{{ msg }}</div>
+			{% endif %}
 			<div class="main">
 				{% block main_content %}{% endblock %}
 			</div>

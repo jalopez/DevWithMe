@@ -1,5 +1,7 @@
 a{
 	color: black;
+	cursor: pointer;
+	text-decoration: underline;
 }
 
 .hidden{
@@ -16,9 +18,31 @@ a{
 }
 
 .wrapper{	
-	width: 900px;
+	width: 1000px;
 	margin: 10px auto;
 }
+
+.menu {
+	float: left;
+	width: 200px;
+	padding: 5px;
+	border: 1px solid #DDDDDD;
+	-moz-border-radius: 13px;
+	-webkit-border-radius: 13px;
+}
+.menu .title {
+	font-weight: bold;
+	text-align: center;
+}
+.menu ul {
+	padding: 0px;
+}
+.menu ul li {
+	list-style-type: none;
+	padding: 10px;
+	border-bottom: 1px solid #DDDDDD;
+}
+
 
 .username{
 	position: absolute;
@@ -29,7 +53,8 @@ a{
 
 .main{
 	margin: 0 auto;
-    width: 850px;
+    width: 750px;
+    overflow: hidden;
 }
 
 .pub_form{
@@ -37,13 +62,15 @@ a{
 	border: 1px solid #000000;
 }
 .publication{
-	background: none repeat scroll 0 0 #DDDDDD;
     clear: both;
     float: left;
     margin: 10px;
     min-height: 100px;
     padding: 10px;
-    width: 100%;
+    width: 95%;
+    border: 1px solid #DDDDDD;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;
 }
 .addcomment {
 	clear: both;
@@ -88,9 +115,3 @@ a{
 	bottom: 0;
 	font-size: 10pt;
 }
-
-.add {
-	cursor: pointer;
-	text-decoration: underline;
-}
-
