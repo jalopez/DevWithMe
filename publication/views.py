@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.models import User
 from annoying.decorators import render_to
 from django.http import HttpResponseForbidden
 from models import Publication, Comment, Snippet
-from forms import ReplyForm, SnippetForm
+from forms import ReplyForm, SnippetForm, MessageForm
 
 from tag.models import Tag
 
@@ -18,9 +19,9 @@ def add_publication(request):
     if request.method != 'POST':
         return HttpResponseForbidden("Method not allowed")
     
-    next = "/"
+    nextPath = "/"
     if (request.GET.has_key("next")):
-        next = request.GET["next"]
+        nextPath = request.GET["next"]
         
     reply_to = None
     if request.POST.has_key("reply_to"):
@@ -30,15 +31,40 @@ def add_publication(request):
         form = ReplyForm(request.POST)
         pub = create_comment(request, form, reply_to)
     else:
-        form = SnippetForm(request.POST)
-        pub = create_snippet(request, form)
+        if request.POST.has_key("to"): #message to a friend
+            form = MessageForm(request.POST)
+            pub = create_message(request, form)
+        else:
+            form = SnippetForm(request.POST)
+            pub = create_snippet(request, form)
     
     if (pub):
-        return redirect(next)
+        return redirect(nextPath)
     else:
         #add error
-        return redirect(next)
-        
+        return redirect(nextPath)
+
+def create_message(request, form):
+    if not form.is_valid():
+        return None
+    
+    text = form.cleaned_data['text']
+    title = form.cleaned_data['title']
+    to = form.cleaned_data['to']
+    try:
+        referencedUser = User.objects.get(username=to)
+    except:
+        return None
+    
+    comment = Comment(title=title, text=text)
+    comment.save()
+    
+    pub = Publication(content=comment, reply_to_pub=None, is_public=False, published_by=request.user.get_profile())
+    pub.save()
+    
+    pub.to.add(referencedUser.get_profile())
+    return pub 
+      
 def create_comment(request, form, reply_to):
     if not form.is_valid():
         return None

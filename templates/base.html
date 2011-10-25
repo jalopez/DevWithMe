@@ -23,6 +23,7 @@
 					{% endif %}
 				{% endblock %}
 			</div>
+
 			<div class="menu-left">
 				<div class="menu">
 					<ul>
@@ -30,6 +31,7 @@
 						{% if user.is_authenticated %}
 							<li><a href="/{{user.username}}">My Feed</a></li>
 							<li><a class="add addSnippet">Add new snippet</a></li>
+							<li><a class="add sendMessage">Send message</a></li>
 						{% endif %}
 					</ul>
 				</div>
@@ -49,8 +51,10 @@
 			{% if msg %}
 				<div class="msg">{{ msg }}</div>
 			{% endif %}
+			
 			<div class="main">
 				{% if user.is_authenticated %}
+				
 					<div class="hidden snippet_form" id="new_snippet_area">
 					    <form action="/publication?next={% if user_feed %}/{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
 					            {{ pub_form.as_p }}
@@ -63,6 +67,14 @@
 					            <input type="submit" value="Follow" />
 					    </form>
 					</div>
+					
+					<div class="hidden message_form" id="new_message_area">
+					    <form action="/publication?next={% if user_feed %}{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
+					            {{ msg_form.as_p }}
+					            <input type="submit" value="Send message" />
+					    </form>
+					</div>
+					
 				{% endif %}
 				{% block main_content %}{% endblock %}
 			</div>

@@ -162,9 +162,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
-    "context-processors.processors.pub_form",
-    "context-processors.processors.relationship_form",
     "context-processors.processors.relationships",
+    "context-processors.processors.common_forms",
+
 )
 
 

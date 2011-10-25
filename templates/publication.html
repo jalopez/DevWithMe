@@ -25,7 +25,7 @@
 			</div>
 		{% endif %}
 		
-		{% if pub.content.tags.all|length > 0 %}
+		{% if pub.content.tags.all %}
 		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in pub.content.tags.all %} <a href="/tag/{{ tag }}">{{ tag }}</a> {% endfor %}</div>
 		{% endif %}
 		<div class="replies">

@@ -60,12 +60,13 @@ a{
     overflow: hidden;
 }
 
-.reply_form, .snippet_form {
+.reply_form, .snippet_form, .message_form {
 	padding: 5px 20px;
 	border: 1px solid #DDDDDD;
     -moz-border-radius: 13px;
     -webkit-border-radius: 13px;
 }
+
 .publication{
     clear: both;
     float: left;

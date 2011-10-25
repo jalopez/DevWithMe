@@ -10,3 +10,8 @@ class SnippetForm(forms.Form):
 class ReplyForm(forms.Form):
     title = forms.CharField(max_length=255, label="Title")
     text = forms.CharField(widget=forms.widgets.Textarea(), label="Text")
+    
+class MessageForm(forms.Form):
+    title = forms.CharField(max_length=255, label="Title")
+    text = forms.CharField(widget=forms.widgets.Textarea(), label="Text")
+    to = forms.CharField(max_length=255, label="To")

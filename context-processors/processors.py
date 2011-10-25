@@ -1,14 +1,13 @@
-from publication.forms import SnippetForm
+
+from publication.forms import SnippetForm, MessageForm
 from user_profile.forms import RelationshipForm
 
 
-def pub_form(request):
+def common_forms(request):
     pub_form = SnippetForm()
-    return {'pub_form': pub_form}
-
-def relationship_form(request):
     relationship_form = RelationshipForm()
-    return {'relationship_form': relationship_form}
+    msg_form = MessageForm()
+    return {'pub_form': pub_form, 'msg_form': msg_form, 'relationship_form': relationship_form}
 
 def relationships(request):
     if request.user.is_authenticated():
