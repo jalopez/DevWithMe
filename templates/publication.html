@@ -5,7 +5,7 @@
 
 	<h2>
 		{{ pub.content.title }} 
-		<div class="inline_small">by 
+		<div class="inline_small"> by 
 			<a class="small" href="/{{ pub.published_by }}">{{ pub.published_by}}</a>
 		</div> 
 	</h2>
@@ -17,13 +17,13 @@
 		</div>		
 		<div class="pub_content">{{ pub.content.text }}</div>
 		{% if pub.content.tags.all|length > 0 %}
-		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in pub.content.tags.all %}{{ tag }} {% endfor %}</div>
+		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in pub.content.tags.all %} {{ tag }} {% endfor %}</div>
 		{% endif %}
 		<div class="replies">
 		{% for reply in replies %}
 			<div class="publication">
 				<div class="header_pub">
-					<div class="title comment_title">{{ reply.content.title }}</div>by 
+					<div class="title comment_title">{{ reply.content.title }}</div> by 
 					<a class="small" href="/{{ reply.published_by }}">{{ pub.published_by}}</a>
 					<div class="date comment_date">{{ reply.date|naturalday }}</div>
 				</div>		

@@ -35,6 +35,9 @@ def add_publication(request):
     
     if (pub):
         return redirect(next)
+    else:
+        #add error
+        return redirect(next)
         
 def create_comment(request, form, reply_to):
     if not form.is_valid():
@@ -44,9 +47,7 @@ def create_comment(request, form, reply_to):
     title = form.cleaned_data['title']
     
     comment = Comment(title=title, text=text)
-    comment.save()
-    add_tags(comment, form.cleaned_data['tags'])
-    
+    comment.save()    
     reply_pub = Publication.objects.get(pk=reply_to)
     
     pub = Publication(content=comment, reply_to_pub=reply_pub, is_public=True, published_by=request.user.get_profile())
@@ -71,7 +72,8 @@ def create_snippet(request, form):
     return pub
 
 def add_tags(content, tags_string):
-    [get_or_create_tag(content, t) for t in tags_string.split(",")]
+    if (tags_string != ""):
+        [get_or_create_tag(content, t) for t in tags_string.split(",")]
     
 def get_or_create_tag(content, t):
     tag, created = Tag.objects.get_or_create(tag=t)
