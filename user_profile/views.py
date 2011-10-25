@@ -66,4 +66,6 @@ def add_relationship(request):
     return redirect(next)
     
     
-        
+@login_required
+def my_feed(request):
+    return redirect("/" + request.user.username)

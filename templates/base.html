@@ -19,7 +19,7 @@
 					{% if user.is_authenticated %}
 					    <p class="username">Welcome, <a href="/{{ user.username }}">{{ user.username }}</a>. <a href="/logout">Logout</a>.</p>
 					{% else %}
-					    <p class="username">Welcome, anonymous. Please <a href="{% url 'django.contrib.auth.views.login' %}?next=/">log in.</a></p>
+					    <p class="username">Welcome, anonymous. Please <a href="{% url 'django.contrib.auth.views.login' %}">log in.</a></p>
 					{% endif %}
 				{% endblock %}
 			</div>
@@ -69,7 +69,7 @@
 					</div>
 					
 					<div class="hidden message_form" id="new_message_area">
-					    <form action="/publication?next={% if user_feed %}{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
+					    <form action="/publication?next={% if user_feed %}/{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
 					            {{ msg_form.as_p }}
 					            <input type="submit" value="Send message" />
 					    </form>
