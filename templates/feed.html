@@ -14,7 +14,8 @@
 {% for pub in feed%}
 	<div class="publication">
 		<div class="header_pub">
-			<div class="title"><a href="/publication/{{ pub.pk }}">{{ pub.content.title }}</a></div>
+			<div class="title"><a href="/publication/{{ pub.pk }}">{{ pub.content.title }}</a> by 
+				<a class="small" href="/{{ pub.published_by}}">{{ pub.published_by}}</a></div>
 			<div class="date">
 				<div>{{ pub.date|naturalday }}</div>
 				<div>{{ pub.date|date:"H:m" }}</div>

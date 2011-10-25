@@ -1,6 +1,11 @@
 $(document).ready(function() {
-	var links = $(".add");
+	var links = $(".addSnippet");
 	for (var i=0; i < links.length; i++){
-		$(links[i]).click(function(){$(".pub_form").toggle()});
+		$(links[i]).click(function(){$(".snippet_form").toggle()});
+	}
+	
+	var links = $(".addReply");
+	for (var i=0; i < links.length; i++){
+		$(links[i]).click(function(){$(".reply_form").toggle()});
 	}
 });

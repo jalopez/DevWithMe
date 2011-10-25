@@ -14,9 +14,8 @@
 		<div class="pub_content">{{ pub.content.text }}</div>
 		{% if pub.content.tags.all|length > 0 %}
 		<div class="pub_tags"><span class="tags_title">Tags: </span>{% for tag in pub.content.tags.all %}{{ tag }} {% endfor %}</div>
-		{% endif %}	
-	</div>
-	<div class="replies">
+		{% endif %}
+		<div class="replies">
 		{% for reply in replies %}
 			<div class="publication">
 				<div class="header_pub">
@@ -26,11 +25,12 @@
 				<div class="pub_content">{{ reply.content.text }}</div>
 			</div>
 		{% endfor %}
+	</div>	
 	</div>
 	<div class="addcomment">
-			<a name="comment" class="add">Add comment...</a>
-             <div class="hidden pub_form" id="new_snippet_area">
-			    <form action="/publication?next={% if user_feed %}{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
+			<a name="comment" class="addReply">Add comment...</a>
+             <div class="hidden reply_form" id="new_snippet_area">
+			    <form action="/publication?next={% if user_feed %}/{{ user_feed }}{% else %}/{% endif %}" method="post">{% csrf_token %}
 			            {{ pub_form.as_p }}
 			            <input type="submit" value="Add Snippet" />
 			    </form>
