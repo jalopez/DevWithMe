@@ -3,17 +3,22 @@
 
 {% block main_content %}
 <h2>
-	{% if user_feed %}
-		{{ user_feed }} feed
+	{% if user.username ==  user_feed %}
+		My Feed
+	{% else %}{% if user_feed %}
+		{{ user_feed }}'s Feed
 	{% else %}
-		Public feed
-	{% endif %}
+		Public Feed
+	{% endif %}{% endif %}
 </h2>
 {% for pub in feed%}
 	<div class="publication">
 		<div class="header_pub">
 			<div class="title"><a href="/publication/{{ pub.pk }}">{{ pub.content.title }}</a></div>
-			<div class="date">{{ pub.date|naturalday }}</div>
+			<div class="date">
+				<div>{{ pub.date|naturalday }}</div>
+				<div>{{ pub.date|date:"H:m" }}</div>
+			</div>
 		</div>		
 		<div class="pub_content">{{ pub.content.text }}</div>
 		<a href="/publication/{{ pub.pk }}#comments">Add/Show comments</a>

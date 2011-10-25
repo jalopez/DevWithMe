@@ -30,10 +30,6 @@ a{
 	-moz-border-radius: 13px;
 	-webkit-border-radius: 13px;
 }
-.menu .title {
-	font-weight: bold;
-	text-align: center;
-}
 .menu ul {
 	padding: 0px;
 }
@@ -59,7 +55,9 @@ a{
 
 .pub_form{
 	padding: 5px 20px;
-	border: 1px solid #000000;
+	border: 1px solid #DDDDDD;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;
 }
 .publication{
     clear: both;
@@ -90,6 +88,11 @@ a{
 
 .publication .header_pub > div{
 	float:left;
+}
+
+.publication .header_pub .date {
+	float: right;
+	margin-right: 20px;
 }
 
 .publication .header_pub .date{
