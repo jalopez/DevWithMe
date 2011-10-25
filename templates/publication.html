@@ -46,7 +46,7 @@
 			    <form action="/publication?next={% if user_feed %}/publication/{{ pub.pk }}{% else %}/{% endif %}" method="post">{% csrf_token %}
 			    		<input type="hidden" name="reply_to" value="{{ pub.pk }}" />
 			            {{ comment_form.as_p }}
-			            <input type="submit" value="Add Snippet" />
+			            <input type="submit" value="Add Comment" />
 			    </form>
 			</div>
     	</div>
