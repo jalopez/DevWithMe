@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from annoying.decorators import render_to
 from django.http import HttpResponseForbidden
 from models import Publication, Comment, Snippet
@@ -15,6 +16,7 @@ def publication_detail(request, pub_id):
     replies = Publication.objects.filter(reply_to_pub=pub).order_by("date")
     return {'pub': pub, 'replies': replies, 'comment_form': ReplyForm()}
 
+@login_required
 def add_publication(request):
     if request.method != 'POST':
         return HttpResponseForbidden("Method not allowed")
